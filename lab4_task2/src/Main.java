@@ -4,26 +4,18 @@ void main() {
     System.out.println("Welcome Conway's Game of Life");
     while (true) {
         System.out.println("Setting grid size");
-        System.out.print("Input amount of rows: ");
+        System.out.print("Input amount of rows (min 20): ");
         int rows = scanner.nextInt();
-        System.out.print("Input amount of columns: ");
+        System.out.print("Input amount of columns (min 20): ");
         int cols = scanner.nextInt();
         GameOfLife game = new GameOfLife(rows, cols);
         System.out.println("Choose initial generation type:");
         System.out.println("1. Random generation\n" +
-                "2. Glider generation (Grid must be at least 3x3)");
+                "2. Glider generation");
         int generationType = scanner.nextInt();
         if (generationType == 1) {
             game.initRandom();
         } else if (generationType == 2) {
-            while (rows < 3 || cols < 3) {
-                System.out.println("Grid too small for a glider. Minimum size is 3x3.");
-                System.out.print("Enter number of rows: ");
-                rows = scanner.nextInt();
-                System.out.print("Enter number of columns: ");
-                cols = scanner.nextInt();
-                game = new GameOfLife(rows, cols); // recreate game with new size
-            }
             // ask user for starting position, make sure it's within 3x3 glider boundaries
             int maxStartRow = rows - 3;
             int maxStartCol = cols - 3;
